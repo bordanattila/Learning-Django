@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 # Create your views here.
 monthly_challenges = {
@@ -35,7 +36,8 @@ def month_as_a_number(request, month):
         redirect_path = reverse("month_challenge", args=[month_page])
         return HttpResponseRedirect(redirect_path)
     except:
-        return HttpResponseNotFound("Invalid month")
+        response_data= render_to_string("404.html")
+        return HttpResponseNotFound(response_data)
 
 
 def monthly_challenge(request, month):
@@ -47,4 +49,4 @@ def monthly_challenge(request, month):
         })
 
     except:
-        return HttpResponseNotFound("This is not a valid link")
+        raise Http404()

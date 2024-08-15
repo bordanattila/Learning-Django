@@ -1,11 +1,15 @@
 {% extends 'layout.html' %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'challenges/index.css' %}" />
+{% endblock %}
 
 {% block page_title %}
   Django Challenges App
 {% endblock %}
 
 {% block content %}
-<p>good</p>
   <ul>
     {% for month in months_name %}
       <li>
