@@ -23,12 +23,9 @@ def index(request):
     list_items = ""
     months = list(monthly_challenges.keys())
 
-    for month in months:
-        redirect_path = reverse("month_challenge", args=[month])
-        list_items += f"<li><a href='{redirect_path}'>{month.capitalize()}</a></li>"
-
-    response_data = f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+    return render(request, "challenges/index.html", {
+        "months_name": months,
+    })
 
 
 def month_as_a_number(request, month):
@@ -44,8 +41,10 @@ def month_as_a_number(request, month):
 def monthly_challenge(request, month):
     try:
         text = monthly_challenges[month]
-        return HttpResponse(text)
+        return render(request, "challenges/challenge.html", {
+            "challenge_text": text,
+            "month_name": month,
+        })
+
     except:
         return HttpResponseNotFound("This is not a valid link")
-
-

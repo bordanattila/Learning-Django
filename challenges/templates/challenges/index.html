@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block page_title %}
+  Django Challenges App
+{% endblock %}
+
+{% block content %}
+<p>good</p>
+  <ul>
+    {% for month in months_name %}
+      <li>
+        <a href="{% url 'month_challenge' month %}">{{ month|title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

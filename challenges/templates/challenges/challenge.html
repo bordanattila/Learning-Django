@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block page_title %}
+  Your {{ month_name|title }} Challenge
+{% endblock %}
+
+{% block content %}
+  <h1>Hello</h1>
+  <h2>{{ month_name|title }}</h2>
+  <h3>{{ challenge_text }}</h3>
+{% endblock %}
